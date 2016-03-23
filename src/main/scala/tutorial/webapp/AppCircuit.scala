@@ -31,14 +31,8 @@ object AppCircuit extends Circuit[RootModel] with ReactConnector[RootModel] {
         case NoOp => noChange
     };
     
-    def doLog: PartialFunction[AnyRef, AnyRef] = { 
-      case x => { 
-        println("Processing action: " + x)
-        x
-      }
-    }
     
-    override def handle = doLog andThen doHandle
+    override def handle = doHandle
   }
   
 
