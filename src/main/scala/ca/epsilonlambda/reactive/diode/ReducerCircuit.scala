@@ -18,7 +18,7 @@ class ReducerCircuit[M](reducer: Reducer[M]) extends Circuit[DiodeModel[M]] with
     def doHandle: PartialFunction[AnyRef, ActionResult[DiodeModel[M]]] = {
       
       case Action(prevState: M, action) => {
-        updated(reducer.apply(prevState, action))
+        updated(reducer(prevState, action))
       }
     }
  
