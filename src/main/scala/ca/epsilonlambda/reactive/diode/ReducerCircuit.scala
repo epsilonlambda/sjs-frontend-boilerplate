@@ -14,11 +14,11 @@ class ReducerCircuit[M](reducer: Reducer[M]) extends Circuit[DiodeModel[M]] with
   
   def noEq = new FastEq[Any]() { override def eqv(a: Any, b: Any) = false; }
   
-  val handler = new ActionHandler(zoomRW(_.model)((m, t) => new DiodeModel(reducer.initialState))(noEq)) {
+  val handler = new ActionHandler(zoomRW(_.model)((m, t) => new DiodeModel(t))(noEq)) {
     def doHandle: PartialFunction[AnyRef, ActionResult[DiodeModel[M]]] = {
       
       case Action(prevState: M, action) => {
-        new ModelUpdate(new DiodeModel[M](reducer.apply(prevState, action)))
+        updated(reducer.apply(prevState, action))
       }
     }
  
