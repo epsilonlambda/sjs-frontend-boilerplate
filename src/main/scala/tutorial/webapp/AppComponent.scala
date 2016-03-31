@@ -4,16 +4,16 @@ import japgolly.scalajs.react.vdom.prefix_<^._;
 object AppComponent {
   case class Props(
       message: String,
-      dispatch: AnyRef => Callback
+      dispatch: (AnyRef => Callback)
   )
   
   class Backend($: BackendScope[Props, Unit]) {
     def onClickIncrease(p: Props)() = {
-      p.dispatch(Increase(1))
+      p.dispatch(actions.Increase(1))
     }
     
     def onNothing(p: Props)() = {
-      p.dispatch(NoOp)
+      p.dispatch(actions.NoOp)
     }
     
     
