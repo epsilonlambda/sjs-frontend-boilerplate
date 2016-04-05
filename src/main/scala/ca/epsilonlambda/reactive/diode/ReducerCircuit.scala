@@ -11,7 +11,7 @@ case class Action[M](prevState: M, action: AnyRef)
 
 class ReducerCircuit[M](reducer: Reducer[M]) extends Circuit[DiodeModel[M]] with ReactConnector[DiodeModel[M]] {
   def initialModel = new DiodeModel(reducer.initialState)
-  
+  // TODO: Fix this 
   def noEq = new FastEq[Any]() { override def eqv(a: Any, b: Any) = false; }
   
   val handler = new ActionHandler(zoomRW(_.model)((m, t) => new DiodeModel(t))(noEq)) {
