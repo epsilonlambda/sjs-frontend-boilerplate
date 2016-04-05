@@ -18,7 +18,7 @@ lazy val consensus = (project in file(".")).
 			"org.webjars.npm" % "react-dom" % "0.14.3" / "react-dom.js"         commonJSName "ReactDOM" minified "react-dom.min.js" dependsOn "react-with-addons.js"
 		)).dependsOn(reactBootstrap)
 
-lazy val reactBootstrap = (project in file("react-bootstrap")).
+lazy val reactBootstrap = (project in file("scalajs-react-extra/react-bootstrap")).
   enablePlugins(ScalaJSPlugin).settings(
   scalaVersion := "2.11.7",
   persistLauncher := false,
