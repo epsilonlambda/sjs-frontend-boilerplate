@@ -11,11 +11,12 @@ import ca.epsilonlambda.reactive.diode._;
 object TutorialApp extends JSApp {
   def main(): Unit = {
     val store : Store[RootModel] = new DiodeStore[RootModel](AppReducer)
+   
     ReactDOM.render(
-        store.connect(
-            m => new AppComponent.Props(m.counter.toString(), m.counter, store.dispatch, m.otherMessage), 
-            (p: AppComponent.Props, dispatch) => new AppComponent.Props(p.message, p.n, p.dispatch, p.anotherMessage), 
-            (props: AppComponent.Props) => AppComponent(props)),
+        store.connect[AppComponent.Props](
+            AppComponent(_),
+            m => AppComponent.Props(m.counter.toString(), m.counter, store.dispatch, m.otherMessage)), 
+            
         document.body
         )
   }
