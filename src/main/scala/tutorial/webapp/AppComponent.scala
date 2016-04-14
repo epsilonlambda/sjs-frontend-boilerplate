@@ -7,27 +7,33 @@ object AppComponent {
   case class Props(
       message: String,
       n: Int,
-      dispatch: (AnyRef => Callback)
+      dispatch: (AnyRef => Unit),
+      anotherMessage: String = ""
   )
   
   class Backend($: BackendScope[Props, Unit]) {
-    def onClickIncrease() = {
+    def onClickIncrease() = CallbackTo[Unit] {
 
       $.props.runNow().dispatch(actions.Increase(10));
 
     }
     
-    def onNothing(p: Props)() = {
-      p.dispatch(actions.NoOp)
+    def onNothing() = CallbackTo[Unit] {
+      $.props.runNow().dispatch(actions.NoOp)
     }
     
-    def onFancyBootstrapClick() = {
+    def onFancyBootstrapClick() = CallbackTo[Unit]{
       println("Hey")
       $.props.runNow().dispatch(actions.Increase(2));
     }
     
-    def onReset() ={
+    def onReset() =CallbackTo[Unit]{
       
+    }
+    
+    def onChange(t: ReactEventI) = CallbackTo[Unit] {
+      val message = t.target.value;
+      $.props.runNow().dispatch(actions.SetOtherMessage(message))
     }
     
     
@@ -35,17 +41,18 @@ object AppComponent {
       <.div(
         <.h3(p.message)
         ,<.button(
-            ^.onClick --> onClickIncrease(),
+            ^.onClick --> onClickIncrease,
             "Increase"
          )
         ,<.button(
-            ^.onClick --> onNothing(p),
+            ^.onClick --> onNothing,
             "Nothing"
          )
         ,Button()(<.span(^.onClick --> onFancyBootstrapClick(), "Bootstrap!"))
-        ,Button()(<.span(^.onClick --> ({ $.props.runNow().dispatch(actions.Reset) }), "Reset")) 
-        ,Input(`type` = "text", addonAfter = <.span("Addon"), ref="txt")()
+        ,Button()(<.span(^.onClick --> (CallbackTo[Unit]{ $.props.runNow().dispatch(actions.Reset) }), "Reset")) 
+        ,Input(`type` = "text", addonAfter = <.span("Addon"), ref="txt", value = p.anotherMessage, onChange = onChange)()
         ,<.h1("Bootstrap Integration")
+        ,<.h2("Consensus v0.1")
         ,ProgressBar(now = p.n, max = 1000)()
       )
     }

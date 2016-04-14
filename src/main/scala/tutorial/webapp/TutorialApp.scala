@@ -13,8 +13,8 @@ object TutorialApp extends JSApp {
     val store : Store[RootModel] = new DiodeStore[RootModel](AppReducer)
     ReactDOM.render(
         store.connect(
-            m => new AppComponent.Props(m.counter.toString(), m.counter, (x: AnyRef) => CallbackTo(()=>Unit)), 
-            (p: AppComponent.Props, dispatch) => new AppComponent.Props(p.message, p.n, dispatch), 
+            m => new AppComponent.Props(m.counter.toString(), m.counter, store.dispatch, m.otherMessage), 
+            (p: AppComponent.Props, dispatch) => new AppComponent.Props(p.message, p.n, p.dispatch, p.anotherMessage), 
             (props: AppComponent.Props) => AppComponent(props)),
         document.body
         )
