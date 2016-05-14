@@ -3,7 +3,7 @@ import japgolly.scalajs.react._;
 import japgolly.scalajs.react.vdom.prefix_<^._;
 import sjs.react.bootstrap._;
 
-object AppComponent {
+object CustomComponent {
   case class Props(
       message: String,
       n: Int,

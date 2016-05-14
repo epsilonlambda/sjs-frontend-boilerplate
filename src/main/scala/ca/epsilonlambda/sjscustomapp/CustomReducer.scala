@@ -5,7 +5,7 @@ import ca.epsilonlambda.reactive._
 // Define the root of our application model
 case class RootModel(counter: Int, otherMessage: String)
 
-object AppReducer extends Reducer[RootModel] {
+object CustomReducer extends Reducer[RootModel] {
   override def initialState = RootModel(555, "INIT")
   
   override def apply(current: RootModel, action: AnyRef) =
