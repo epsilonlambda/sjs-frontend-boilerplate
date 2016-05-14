@@ -1,4 +1,4 @@
-package tutorial.webapp
+package ca.epsilonlambda.sjscustomapp
 import scala.scalajs.js.JSApp;
 import org.scalajs.dom;
 import dom.document;

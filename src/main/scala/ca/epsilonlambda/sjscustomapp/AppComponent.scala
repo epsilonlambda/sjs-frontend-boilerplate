@@ -1,4 +1,4 @@
-package tutorial.webapp
+package ca.epsilonlambda.sjscustomapp
 import japgolly.scalajs.react._;
 import japgolly.scalajs.react.vdom.prefix_<^._;
 import sjs.react.bootstrap._;

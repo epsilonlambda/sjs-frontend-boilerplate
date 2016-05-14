@@ -1,4 +1,4 @@
-package tutorial.webapp
+package ca.epsilonlambda.sjscustomapp
 
 import ca.epsilonlambda.reactive._
 

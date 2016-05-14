@@ -1,4 +1,4 @@
-package tutorial.webapp.actions
+package ca.epsilonlambda.sjscustomapp.actions
 
 case class Increase(amount: Int)
 case class Decrease(amount: Int)
