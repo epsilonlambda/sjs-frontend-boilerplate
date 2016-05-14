@@ -1,3 +1,4 @@
 [submodule "scalajs-react-extra"]
 	path = scalajs-react-extra
 	url = git@github.com:epsilonlambda/scalajs-react-extra.git
+	branch=r0.0.0
